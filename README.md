@@ -2,16 +2,16 @@
 Basado en https://k6.io/docs/using-k6/modules/  
 
 ### Problema:  
-K6 esta hecho en Go y por tema de seguridad no soporta modulos de Node.js que resuelvan librerías externas. Por ejemplo, faker.js  
+K6 está hecho en Go y por tema de seguridad no soporta módulos de Node.js que resuelvan librerías externas. Por ejemplo, faker.js  
 
 ### Solución:
-Los módulos que usen librerías externas deben convertirsea paquetes independientes y aisaldos. Esto se puede hacer con muchas librerías. K6 recomienda hacerlo con webpack (https://webpack.js.org/)
+Los módulos que usan librerías externas deben convertirse a paquetes independientes y aislados. Esto se puede hacer con muchas librerías. K6 recomienda hacerlo con `webpack` (https://webpack.js.org/)
 
 ### Observaciones:
-Agregar modulos externos a un proyecto de prueba tienen un impacto negativo en el rendimiento de cpu y memoria. K6 crea un máquina virtual Javascript separada por cada VU por lo que usar librerias externas puede ser un problema en pruebas que requieran grandes cantidades de VU. Este repositorio utiliza las dependencias de Babel y CoreJS para disminuir el impacto de usar librerías externas usando `--compability-mode=base`. Para más información sobre modo de compatibilidad y rendimiento: https://k6.io/docs/using-k6/javascript-compatibility-mode/#base 
+Agregar módulos externos a un proyecto de prueba tienen un impacto negativo en el rendimiento de cpu y memoria. K6 crea un máquina virtual Javascript separada por cada VU por lo que usar librerias externas puede ser un problema en pruebas que requieran grandes cantidades de VU. Este repositorio utiliza las dependencias de Babel y CoreJS para disminuir el impacto de usar librerías externas usando `--compability-mode=base`. Para más información sobre modo de compatibilidad y rendimiento: https://k6.io/docs/using-k6/javascript-compatibility-mode/#base 
 
 ### Implementación:
-Siguiendo el paso de la documentación de k6:  
+Siguiendo el paso a paso de la documentación de k6:  
 1. Se debe crear un proyecto node: `npm init`  
 2. Instalar las dependencias necesarias:  
 ```
@@ -59,7 +59,7 @@ Tener en cuenta que hay completar la configuración `entry` de acuerdo al proyec
   }
 ...  
 ```
-Tener en cuenta que hay completar el path a los archivos `bundle.js` de acuerdo al proyecto. Estos archivos se crean automaticamente cuando ejecutamos `webpack` en una carpeta llama `dist`. Por ejemplo. En este repositorio lo completamos con los datos del archivo `hello_world.bundle.js`.
+Tener en cuenta que hay completar el path a los archivos `bundle.js` de acuerdo al proyecto. Estos archivos se crean automáticamente cuando ejecutamos `webpack` en una carpeta llama `dist`. Por ejemplo. En este repositorio lo completamos con los datos del archivo `hello_world.bundle.js`.
 
 5. Ejecutar los test con: `npm run test` 
 
